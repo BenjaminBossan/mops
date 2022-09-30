@@ -12,7 +12,7 @@ jobs:
   inference-pytest-partial:
 
     runs-on: ${{ matrix.os }}
-    if: ${{ !contains(github.event.head_commit.message, 'CI inference') }}
+    if: ${{ !contains(github.event.head_commit.message, 'inference') }}
     # if: ${{ (github.repository == 'BenjaminBossan/mops') && !contains(github.event.head_commit.message, 'CI inference') }}
     strategy:
       fail-fast: false  # need to see which ones fail
