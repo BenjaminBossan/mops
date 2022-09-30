@@ -1,0 +1,41 @@
+name: pytest
+
+on:
+  - push
+  - pull_request
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  pytest:
+
+    runs-on: ${{ matrix.os }}
+    if: "github.repository == 'BenjaminBossan/mops'"
+    strategy:
+      fail-fast: false  # need to see which ones fail
+      matrix:
+        os: [ubuntu-latest]
+        python: ["3.9", "3.10"]
+
+    timeout-minutes: 5
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python ${{ matrix.python }}
+      uses: actions/setup-python@v3
+      with:
+        python-version: ${{ matrix.python }}
+
+    - name: Install dependencies
+      run: |
+        pip install .
+        python --version
+        pip --version
+        pip list
+      shell: bash
+
+    - name: Tests
+      run: |
+        python -m pytest mops/
