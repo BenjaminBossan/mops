@@ -38,4 +38,4 @@ jobs:
 
     - name: Full inference tests
       run: |
-        python -m pytest -s -v -m "inference" mops/
+        python -m pytest -v mops/

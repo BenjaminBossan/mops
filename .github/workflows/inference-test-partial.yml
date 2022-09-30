@@ -38,4 +38,4 @@ jobs:
 
     - name: Partial inference tests
       run: |
-        python -m pytest -s -v -m "inference" skops/
+        python -m pytest -v skops/
