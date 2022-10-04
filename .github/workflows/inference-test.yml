@@ -28,18 +28,6 @@ jobs:
       with:
         python-version: ${{ matrix.python }}
 
-    - name: Install dependencies
-      run: |
-        pip install .
-        python --version
-        pip --version
-        pip list
-      shell: bash
-
-    - name: Partial inference tests
-      run: |
-        python -m pytest -v mops/
-
   inference-pytest-full:
 
     runs-on: ${{ matrix.os }}
@@ -58,15 +46,3 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: ${{ matrix.python }}
-
-    - name: Install dependencies
-      run: |
-        pip install .
-        python --version
-        pip --version
-        pip list
-      shell: bash
-
-    - name: Full inference tests
-      run: |
-        python -m pytest -v mops/
