@@ -1,4 +1,4 @@
-name: inference-tests
+name: pytest
 
 on:
   - push
