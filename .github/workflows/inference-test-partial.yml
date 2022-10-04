@@ -1,0 +1,41 @@
+name: inference-tests-partial
+
+on:
+  - push
+  - pull_request
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  inference-pytest-partial:
+
+    runs-on: ${{ matrix.os }}
+    if: ${{ (github.repository == 'BenjaminBossan/mops') && !contains(github.event.head_commit.message, '[CI inference]') }}
+    strategy:
+      fail-fast: false  # need to see which ones fail
+      matrix:
+        os: [ubuntu-latest]
+        python: ["3.10"]
+
+    timeout-minutes: 5
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python ${{ matrix.python }}
+      uses: actions/setup-python@v3
+      with:
+        python-version: ${{ matrix.python }}
+
+    - name: Install dependencies
+      run: |
+        pip install .
+        python --version
+        pip --version
+        pip list
+      shell: bash
+
+    - name: Partial inference tests
+      run: |
+        python -m pytest -v mops/
