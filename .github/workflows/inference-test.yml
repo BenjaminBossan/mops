@@ -5,7 +5,7 @@ on:
   - pull_request
 
 env:
-  COMMIT_MSG: {{ github.head_commit.message }}
+  COMMIT_MSG: FooBar
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}

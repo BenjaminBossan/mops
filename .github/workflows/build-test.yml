@@ -30,6 +30,7 @@ jobs:
 
     - name: Install dependencies
       run: |
+        printenv
         pip install .
         python --version
         pip --version
