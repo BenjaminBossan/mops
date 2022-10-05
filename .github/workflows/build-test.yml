@@ -32,6 +32,12 @@ jobs:
       run: |
         git log -n 3 --pretty
         printenv
+        echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+        echo "$(git log --format=%B -n 1 ${{github.event.after}})"
+        echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+        echo "Commit SHA: ${{github.event.after}}"
+        echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+        echo "commit message: ${{env.COMMIT_MESSAGE}} (or ${COMMIT_MESSAGE})"
         pip install .
         python --version
         pip --version
