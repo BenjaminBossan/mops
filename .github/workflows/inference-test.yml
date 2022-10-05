@@ -2,7 +2,6 @@ name: pytest
 
 on:
   - push
-  - pull_request
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -12,7 +11,7 @@ jobs:
   has-it:
 
     runs-on: ${{ matrix.os }}
-    if: ${{ contains(github.event.head_commit.message, '[CI inference]') }}
+    if: ${{ (github.repository == 'BenjaminBossan/mops') && contains(github.event.head_commit.message, '[CI inference]') }}
     strategy:
       fail-fast: true
       matrix:
@@ -29,7 +28,7 @@ jobs:
   has-it-not:
 
     runs-on: ${{ matrix.os }}
-    if: ${{ !contains(github.event.head_commit.message, '[CI inference]') }}
+    if: ${{ (github.repository == 'BenjaminBossan/mops') && !contains(github.event.head_commit.message, '[CI inference]') }}
     strategy:
       fail-fast: true
       matrix:
