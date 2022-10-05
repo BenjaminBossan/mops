@@ -30,7 +30,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        git log -1 --pretty
+        git log -n 3 --pretty
         printenv
         pip install .
         python --version
