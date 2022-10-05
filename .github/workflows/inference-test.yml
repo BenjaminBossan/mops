@@ -12,15 +12,12 @@ jobs:
   has-it:
 
     runs-on: ${{ matrix.os }}
-    if: ${{ (github.repository == 'BenjaminBossan/mops') && contains(github.event.head_commit.message, '[CI inference]') }}
+    if: ${{ contains(github.event.head_commit.message, '[CI inference]') }}
     strategy:
       fail-fast: true
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
-        python: ["3.7", "3.8", "3.9", "3.10"]
-
-    # Timeout: https://stackoverflow.com/a/59076067/4521646
-    timeout-minutes: 15
+        os: [ubuntu-latest]
+        python: ["3.10"]
 
     steps:
     - uses: actions/checkout@v3
@@ -32,15 +29,12 @@ jobs:
   has-it-not:
 
     runs-on: ${{ matrix.os }}
-    if: ${{ (github.repository == 'BenjaminBossan/mops') && !contains(github.event.head_commit.message, '[CI inference]') }}
+    if: ${{ !contains(github.event.head_commit.message, '[CI inference]') }}
     strategy:
       fail-fast: true
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
-        python: ["3.7", "3.8", "3.9", "3.10"]
-
-    # Timeout: https://stackoverflow.com/a/59076067/4521646
-    timeout-minutes: 15
+        os: [ubuntu-latest]
+        python: ["3.10"]
 
     steps:
     - uses: actions/checkout@v3
