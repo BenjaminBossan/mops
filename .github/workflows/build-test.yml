@@ -1,6 +1,7 @@
 name: other
 
 on:
+  - push
   - pull_request
 
 concurrency:
@@ -29,14 +30,11 @@ jobs:
 
     - name: Install dependencies
       run: |
-        git log -n 3 --pretty
-        printenv
-        echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-        echo "$(git log --format=%B -n 1 ${{github.event.after}})"
-        echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
         echo "Commit SHA: ${{github.event.after}}"
         echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
         echo "commit message: ${{env.COMMIT_MESSAGE}} (or ${COMMIT_MESSAGE})"
+        echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+        echo "$(git log --format=%B -n 1 ${{github.event.after}})"
         pip install .
         python --version
         pip --version
