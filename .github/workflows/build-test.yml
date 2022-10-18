@@ -40,7 +40,7 @@ jobs:
     - name: Install dependencies
       run: |
         pip install .
-        pip uninstall --no-input pytest
+        pip uninstall --yes pytest
         pip install pytest
         if [ ${{ matrix.sklearn_version }} == "nightly" ];
           then pip install --pre --extra-index https://pypi.anaconda.org/scipy-wheels-nightly/simple scikit-learn;
