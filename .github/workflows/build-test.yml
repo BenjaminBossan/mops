@@ -20,11 +20,11 @@ jobs:
         python: ["3.7", "3.8", "3.9", "3.10"]
         include:
           - python: "3.7"
-            sklearn_version: "0.24"
+            sklearn_version: "0.24,<1.0.dev0"
           - python: "3.8"
-            sklearn_version: "1.0"
+            sklearn_version: "1.0,<1.1.dev0"
           - python: "3.9"
-            sklearn_version: "1.1"
+            sklearn_version: "1.1,<1.2.dev0"
           - python: "3.10"
             sklearn_version: "nightly"
 
