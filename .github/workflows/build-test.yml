@@ -39,7 +39,7 @@ jobs:
     - name: Install dependencies
       run: |
         pip install .
-        pip install "scikit-learn==${{ sklearn_version }}"
+        pip install "scikit-learn==${{ matrix.sklearn_version }}"
         python --version
         pip --version
         pip list
