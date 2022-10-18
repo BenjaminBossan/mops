@@ -24,8 +24,8 @@ jobs:
             sklearn_version: "1.0"
           - python: "3.9"
             sklearn_version: "1.1"
-          - python: "3.10"
-            sklearn_version: "nightly"
+          # - python: "3.10"
+          #   sklearn_version: "nightly"
 
     timeout-minutes: 5
 
