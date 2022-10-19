@@ -38,4 +38,5 @@ jobs:
 
     - name: Tests
       run: |
+        python -c "import os;print('        debug:', os.environ.get('matrix.python'))"
         python -m pytest mops/
