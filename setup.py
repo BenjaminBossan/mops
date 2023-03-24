@@ -15,7 +15,7 @@ def setup_package():
     metadata = dict(
         version=VERSION,
         python_requires=">=3.7",
-        install_requires=["pytest"],
+        install_requires=[],
     )
 
     setup(**metadata)

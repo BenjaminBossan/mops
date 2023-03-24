@@ -2,7 +2,6 @@ name: Debugging mops install
 
 on:
   - pull_request
-  - push
 
 jobs:
   run-debugging-steps-v3:
