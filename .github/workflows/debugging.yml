@@ -6,10 +6,7 @@ on:
 
 jobs:
   run-debugging-steps-v3:
-
     runs-on: ubuntu-latest
-    if: "github.repository == 'BenjaminBossan/mops'"
-
     steps:
     - uses: actions/checkout@v3
     - name: Set up Python
@@ -28,10 +25,7 @@ jobs:
         python -c "import mops;path=mops.__path__;print(path)"
 
   run-debugging-steps-v4:
-
     runs-on: ubuntu-latest
-    if: "github.repository == 'mops-dev/mops'"
-
     steps:
     - uses: actions/checkout@v3
     - name: Set up Python
