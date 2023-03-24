@@ -10,6 +10,8 @@ jobs:
     - uses: actions/checkout@v3
     - name: Set up Python
       uses: actions/setup-python@v3
+    - name: printenv
+      run: printenv
     - name: Install mops and check location
       run: |
         pip --version
@@ -29,6 +31,8 @@ jobs:
     - uses: actions/checkout@v3
     - name: Set up Python
       uses: actions/setup-python@v4
+    - name: printenv
+      run: printenv
     - name: Install mops and check location
       run: |
         pip --version
