@@ -1,0 +1,50 @@
+name: Debugging mops install
+
+on:
+  - pull_request
+  - push
+
+jobs:
+  run-debugging-steps-v3:
+
+    runs-on: ubuntu-latest
+    if: "github.repository == 'BenjaminBossan/mops'"
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python
+      uses: actions/setup-python@v3
+    - name: Install mops and check location
+      run: |
+        pip --version
+        pip install --no-cache-dir .
+        pip list
+        pwd
+        echo "mops location when running from root"
+        python -c "import mops;path=mops.__path__;print(path)"
+        mkdir tmp
+        cd tmp
+        echo "mops location when not running from root"
+        python -c "import mops;path=mops.__path__;print(path)"
+
+  run-debugging-steps-v4:
+
+    runs-on: ubuntu-latest
+    if: "github.repository == 'mops-dev/mops'"
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python
+      uses: actions/setup-python@v4
+    - name: Install mops and check location
+      run: |
+        pip --version
+        pip install --no-cache-dir .
+        pip list
+        pwd
+        echo "mops location when running from root"
+        python -c "import mops;path=mops.__path__;print(path)"
+        mkdir tmp
+        cd tmp
+        echo "mops location when not running from root"
+        python -c "import mops;path=mops.__path__;print(path)"
