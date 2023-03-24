@@ -40,6 +40,8 @@ jobs:
         pip list
         pwd
         # attempted fix: expand PATH
+        pythonLocation=/opt/hostedtoolcache/Python/3.11.2/x64
+        LD_LIBRARY_PATH=/opt/hostedtoolcache/Python/3.11.2/x64/lib
         echo "mops location when running from root"
         python -c "import mops;path=mops.__path__;print(path)"
         mkdir tmp
