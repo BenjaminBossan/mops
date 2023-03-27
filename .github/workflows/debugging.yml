@@ -19,11 +19,11 @@ jobs:
         pip list
         pwd
         echo "mops location when running from root"
-        python -c "import mops;path=mops.__path__;print(path)"
+        python3.9 -c "import mops;path=mops.__path__;print(path)"
         mkdir tmp
         cd tmp
         echo "mops location when not running from root"
-        python -c "import mops;path=mops.__path__;print(path)"
+        python3.9 -c "import mops;path=mops.__path__;print(path)"
 
   run-debugging-steps-v4:
     runs-on: ubuntu-latest
@@ -40,8 +40,8 @@ jobs:
         pip list
         pwd
         echo "mops location when running from root"
-        python -c "import mops;path=mops.__path__;print(path)"
+        python3.9 -c "import mops;path=mops.__path__;print(path)"
         mkdir tmp
         cd tmp
         echo "mops location when not running from root"
-        python -c "import mops;path=mops.__path__;print(path)"
+        python3.9 -c "import mops;path=mops.__path__;print(path)"
