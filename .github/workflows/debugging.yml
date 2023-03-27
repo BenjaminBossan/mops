@@ -20,12 +20,15 @@ jobs:
         pip install --no-cache-dir .
         pip list
         pwd
+        which python
+        which python3
+        python3 --version
         echo "mops location when running from root"
-        python3.9 -c "import mops;path=mops.__path__;print(path)"
+        python3 -c "import mops;path=mops.__path__;print(path)"
         mkdir tmp
         cd tmp
         echo "mops location when not running from root"
-        python3.9 -c "import mops;path=mops.__path__;print(path)"
+        python3 -c "import mops;path=mops.__path__;print(path)"
 
   run-debugging-steps-v4:
     runs-on: ubuntu-latest
@@ -43,9 +46,12 @@ jobs:
         pip install --no-cache-dir .
         pip list
         pwd
+        which python
+        which python3
+        python3 --version
         echo "mops location when running from root"
-        python3.9 -c "import mops;path=mops.__path__;print(path)"
+        python3 -c "import mops;path=mops.__path__;print(path)"
         mkdir tmp
         cd tmp
         echo "mops location when not running from root"
-        python3.9 -c "import mops;path=mops.__path__;print(path)"
+        python3 -c "import mops;path=mops.__path__;print(path)"
