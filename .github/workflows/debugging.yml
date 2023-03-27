@@ -13,6 +13,8 @@ jobs:
     - name: printenv
       run: printenv
     - name: Install mops and check location
+      with:
+        python-version: 3.9
       run: |
         pip --version
         pip install --no-cache-dir .
@@ -34,6 +36,8 @@ jobs:
     - name: printenv
       run: printenv
     - name: Install mops and check location
+      with:
+        python-version: 3.9
       run: |
         pip --version
         pip install --no-cache-dir .
