@@ -10,11 +10,11 @@ jobs:
     - uses: actions/checkout@v3
     - name: Set up Python
       uses: actions/setup-python@v3
+      with:
+        python-version: 3.9
     - name: printenv
       run: printenv
     - name: Install mops and check location
-      with:
-        python-version: 3.9
       run: |
         pip --version
         pip install --no-cache-dir .
@@ -36,11 +36,11 @@ jobs:
     - uses: actions/checkout@v3
     - name: Set up Python
       uses: actions/setup-python@v4
+      with:
+        python-version: 3.9
     - name: printenv
       run: printenv
     - name: Install mops and check location
-      with:
-        python-version: 3.9
       run: |
         pip --version
         pip install --no-cache-dir .
