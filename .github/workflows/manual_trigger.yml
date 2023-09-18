@@ -10,6 +10,8 @@ on:
 jobs:
   run_tests_on_branch:
     runs-on: ubuntu-latest
+    env:
+      PEFT_DEBUG_WITH_TORCH_COMPILE: 123
     steps:
       - uses: actions/checkout@v4
         with:
@@ -23,6 +25,7 @@ jobs:
       - name: Install dependencies
         run: |
           git status
+          echo $PEFT_DEBUG_WITH_TORCH_COMPILE
           pip --version
           pip install .
           pip install pytest
