@@ -8,7 +8,7 @@ on:
         required: true
 
 jobs:
-  check_code_quality:
+  run_tests_on_branch:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -27,6 +27,6 @@ jobs:
           pip install .
           pip install pytest
           pip list
-      - name: Test compile with pytest
+      - name: Run the tests
         run: |
           pytest mops/tests/
