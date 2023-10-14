@@ -4,6 +4,9 @@ on:
   - push
   - pull_request
 
+env:
+  COMMIT_MSG: FooBar
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
@@ -12,15 +15,16 @@ jobs:
   has-it:
 
     runs-on: ${{ matrix.os }}
+
+    env:
+      COMMIT_MSG2: {{ github.head_commit.message }}
+
     if: ${{ (github.repository == 'BenjaminBossan/mops') && contains(github.event.head_commit.message, '[CI inference]') }}
     strategy:
       fail-fast: true
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
-        python: ["3.7", "3.8", "3.9", "3.10"]
-
-    # Timeout: https://stackoverflow.com/a/59076067/4521646
-    timeout-minutes: 15
+        os: [ubuntu-latest]
+        python: ["3.10"]
 
     steps:
     - uses: actions/checkout@v3
@@ -28,19 +32,30 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: ${{ matrix.python }}
+
+    - name: Echo commit message
+      env:
+        COMMIT_MSG3: {{ github.head_commit.message }}
+      run: |
+        printenv
+        echo $COMMIT_MSG
+        echo $COMMIT_MSG2
+        echo $COMMIT_MSG3
+      shell: bash
 
   has-it-not:
 
     runs-on: ${{ matrix.os }}
+
+    env:
+      COMMIT_MSG2: {{ github.head_commit.message }}
+
     if: ${{ (github.repository == 'BenjaminBossan/mops') && !contains(github.event.head_commit.message, '[CI inference]') }}
     strategy:
       fail-fast: true
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
-        python: ["3.7", "3.8", "3.9", "3.10"]
-
-    # Timeout: https://stackoverflow.com/a/59076067/4521646
-    timeout-minutes: 15
+        os: [ubuntu-latest]
+        python: ["3.10"]
 
     steps:
     - uses: actions/checkout@v3
@@ -48,3 +63,13 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: ${{ matrix.python }}
+
+    - name: Echo commit message
+      env:
+        COMMIT_MSG3: {{ github.head_commit.message }}
+      run: |
+        printenv
+        echo $COMMIT_MSG
+        echo $COMMIT_MSG2
+        echo $COMMIT_MSG3
+      shell: bash
