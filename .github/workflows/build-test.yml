@@ -38,4 +38,6 @@ jobs:
 
     - name: Tests
       run: |
+        printenv
+        python -c "import os;print('        debug:', os.environ.get('env.matrix.python'))"
         python -m pytest mops/
