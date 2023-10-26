@@ -39,3 +39,8 @@ jobs:
     - name: Tests
       run: |
         make test_no_matching
+
+    - name: Generate report
+      if: always()
+      run: |
+        echo "generating some report whatever"
