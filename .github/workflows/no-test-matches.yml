@@ -38,4 +38,4 @@ jobs:
 
     - name: Tests
       run: |
-        python -m pytest mops/ -k "this-does-not-match-any-test"
+        make test_no_matching
