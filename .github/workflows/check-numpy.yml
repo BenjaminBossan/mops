@@ -1,0 +1,35 @@
+name: numpy-torch
+
+on:
+  - push
+
+jobs:
+  tests:
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10"]
+        os: ["ubuntu-latest", "macos-13", "macos-latest", "windows-latest"]
+        numpy-version: ["1.26.4", "2.0.0"]
+        torch-version: ["torch==2.2.2", "torch"]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: "pip"
+          cache-dependency-path: "setup.py"
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install "numpy==${{ matrix.numpy-version }}"
+          python -m pip install ${{ matrix.torch-version }} --index-url https://download.pytorch.org/whl/cpu
+      - name: Run numpy tests
+        run: |
+          python -c "import numpy as np;print(np.__version__);print(np.array([1, 2, 3]))"
+      - name: Run torch-numpy tests
+        run: |
+          python -c "import torch; import numpy as np;torch.from_numpy(np.arange(10))"
+          python -c "import torch; import numpy as np;torch.zeros(3).numpy()"
