@@ -17,7 +17,7 @@ def test_inference(model_id, useless):
         # do nothing
         pass
 
-    model = AutoModelForCausalLM.from_pretrained(model_id, useless):
+    model = AutoModelForCausalLM.from_pretrained(model_id)
     model.eval()
     inputs = torch.tensor([[0, 1, 2, 3, 4]])
     model.generate(inputs, do_sample=True, num_return_sequences=1)
