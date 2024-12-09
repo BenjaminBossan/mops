@@ -32,7 +32,7 @@ jobs:
           git status
           echo $PEFT_DEBUG_WITH_TORCH_COMPILE
           if [ "${{ github.event.inputs.pytorch_nightly }}" = "true" ]; then
-            echo "pretending to isntall PyTorch nightly"
+            echo "pretending to install PyTorch nightly"
           fi
           pip --version
           pip install .
