@@ -30,6 +30,20 @@ jobs:
 
     - name: Install dependencies
       run: |
+        echo "try env.COMMIT_MESSAGE: ${{env.COMMIT_MESSAGE}}"
+        echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+        echo "try COMMIT_MESSAGE: ${COMMIT_MESSAGE}"
+        echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+        echo "Commit SHA: ${{github.event.after}}"
+        echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+        echo "git log -n 1: $(git log --format=%B -n 1 ${{github.event.after}})"
+        echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+        echo "git log -n 2: $(git log --format=%B -n 2 ${{github.event.after}})"
+        echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+        echo "git log -n 3: $(git log --format=%B -n 3 ${{github.event.after}})"
+        echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+        printenv
+        echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
         pip install .
         python --version
         pip --version
