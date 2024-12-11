@@ -1,0 +1,46 @@
+name: no-test-matches
+
+on:
+  - push
+  - pull_request
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  pytest:
+
+    runs-on: ${{ matrix.os }}
+    if: "github.repository == 'BenjaminBossan/mops'"
+    strategy:
+      fail-fast: false  # need to see which ones fail
+      matrix:
+        os: [ubuntu-latest]
+        python: ["3.11"]
+
+    timeout-minutes: 5
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python ${{ matrix.python }}
+      uses: actions/setup-python@v3
+      with:
+        python-version: ${{ matrix.python }}
+
+    - name: Install dependencies
+      run: |
+        pip install .
+        python --version
+        pip --version
+        pip list
+      shell: bash
+
+    - name: Tests
+      run: |
+        make test_no_matching
+
+    - name: Generate report
+      if: always()
+      run: |
+        echo "generating some report whatever"
